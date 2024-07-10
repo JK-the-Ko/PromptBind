@@ -167,8 +167,6 @@ get_results.py
 ckpt
 promptbind/tools/
 inference_examples/
-test.sh
-train.sh
 train.out
 spl.csv
 results/
