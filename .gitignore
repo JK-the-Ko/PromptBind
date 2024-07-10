@@ -174,5 +174,4 @@ spl.csv
 results/
 inference_results/
 pdbbind2020/
-split_pdb_id/
 prompt_comp_visualization/
