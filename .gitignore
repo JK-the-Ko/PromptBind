@@ -164,14 +164,15 @@ check_results.py
 get_results.py
 
 .vscode
-# ckpt
-# promptbind/tools/lmdb*
-# promptbind/tools/load_esm2_t33.py
-# inference_examples/temp_files
-# inference_examples/inference_output
-# test.sh
-# train.sh
-# train.out
-# spl.csv
-# results/
-# inference_results/
+ckpt
+promptbind/tools/
+inference_examples/
+test.sh
+train.sh
+train.out
+spl.csv
+results/
+inference_results/
+pdbbind2020/
+split_pdb_id/
+prompt_comp_visualization/
