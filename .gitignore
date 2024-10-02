@@ -163,6 +163,7 @@ promptbind/results
 check_results.py
 get_results.py
 
+.DS_Store
 .vscode
 ckpt
 promptbind/tools/
