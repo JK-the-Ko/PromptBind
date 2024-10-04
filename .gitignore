@@ -165,6 +165,9 @@ get_results.py
 
 .DS_Store
 .vscode
+.safetensors
+.bin
+.pkl
 ckpt
 promptbind/tools/
 inference_examples/
