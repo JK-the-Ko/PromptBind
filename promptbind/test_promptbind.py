@@ -51,6 +51,16 @@ class PromptBindInference:
         with open(self.config_path, 'r') as f:
             args_dict = yaml.safe_load(f)
         combined_args_dict = {**args_dict['config'], **args_dict['args']}
+
+        prompt_nf = combined_args_dict.get('prompt_nf', '')
+        combined_args_dict['pocket_prompt_nf'] = prompt_nf
+        combined_args_dict['complex_prompt_nf'] = prompt_nf
+
+        if 'exp_name' not in combined_args_dict:
+            combined_args_dict['exp_name'] = f"test_prompt_{prompt_nf}"
+        if 'ckpt' not in combined_args_dict:
+            combined_args_dict['ckpt'] = f"pretrained/prompt_{prompt_nf}/best/model.safetensors"
+            
         args = argparse.Namespace(**combined_args_dict)
         set_seed(args.seed)
         return args

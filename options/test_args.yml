@@ -1,11 +1,8 @@
 config:
-  data_path: "data/pdbbind2020"
-  pocket_prompt_nf: 8
-  complex_prompt_nf: 8
-  ckpt: "results/PromptBind-8/best-model/model.safetensors"
+  data_path: "/home/kevinb/nas/protein/data/pdbbind2020"
+  prompt_nf: 8
   batch_size: 4
   resultFolder: "./results"
-  exp_name: "test_prompt_8"
   n_iter: 12
 
 #### The following arguments are not recommended for modification
