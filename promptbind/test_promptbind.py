@@ -7,7 +7,7 @@ import torch
 import yaml
 from accelerate import Accelerator, DistributedDataParallelKwargs
 from accelerate.utils import set_seed
-from data import get_data
+from data.data import get_data
 from models.model import *
 from safetensors.torch import load_model
 from torch_geometric.loader import DataLoader
@@ -135,5 +135,5 @@ class PromptBindInference:
         self.accelerator.wait_for_everyone()
 
 if __name__ == '__main__':
-    infer = PromptBindInference(config_path='test_args.yml')
+    infer = PromptBindInference(config_path='options/test_args.yml')
     infer.run_inference()
