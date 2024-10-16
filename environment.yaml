@@ -7,19 +7,20 @@ channels:
   - defaults
 dependencies:
   - python=3.10
-  - pandas
-  - pytorch
-  - pytorch-cuda=12.4
-  - torchaudio
-  - torchvision
+  - pandas=2.2.3
+  - pytorch=2.4.1
+  - pytorch-cuda=12.1
+  - torchaudio=2.4.1
+  - torchvision=0.19.1
   - python-lmdb
   - torchmetrics
-  - scipy
+  - scipy=1.13.1
   - pytorch-scatter
-  - rdkit
+  - rdkit=2024.03.6
   - accelerate
   - conda-forge::tensorboard
   - pip
   - pip:
-      - torch-geometric==2.6.1
+      - -f https://data.pyg.org/whl/torch-2.4.0+cu121.html
+      - torch-geometric
 
