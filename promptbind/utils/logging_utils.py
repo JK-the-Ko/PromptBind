@@ -4,7 +4,11 @@ import logging
 
 class Logger:
     def __init__(self, accelerator, log_path):
-        self.logger = get_logger('Main')
+        if accelerator is None:
+            self.logger = logging.getLogger('MainLogger')
+            self.logger.setLevel(logging.INFO)
+        else:
+            self.logger = get_logger('Main')
 
         # Make one log on every process with the configuration for debugging.
         logging.basicConfig(
@@ -14,8 +18,11 @@ class Logger:
         )
         handler = logging.FileHandler(log_path)
         handler.setFormatter(logging.Formatter('%(message)s', ""))
-        self.logger.logger.addHandler(handler)
-        self.logger.info(accelerator.state, main_process_only=False)
+        if accelerator is None:
+            self.logger.addHandler(handler)
+        else:
+            self.logger.logger.addHandler(handler)
+            self.logger.info(accelerator.state, main_process_only=False)
         self.logger.info(f'Working directory is {os.getcwd()}')
 
     def log_stats(self, stats, epoch, args, prefix=''):

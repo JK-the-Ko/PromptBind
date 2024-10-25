@@ -4,11 +4,8 @@ from utils.metrics import *
 import numpy as np
 import pandas as pd
 import scipy.spatial
-from torch_geometric.data import Data
 from torch_geometric.data import HeteroData
-import torch.nn.functional as F
 from tqdm.auto import tqdm
-import torchmetrics
 from torch_scatter import scatter_mean
 
 from rdkit import Chem
@@ -543,7 +540,10 @@ def evaluate_mean_pocket_cls_coord_multi_task(accelerator, args, data_loader, mo
     if args.disable_tqdm:
         data_iter = data_loader
     else:
-        data_iter = tqdm(data_loader, mininterval=args.tqdm_interval, disable=not accelerator.is_main_process)
+        if accelerator is not None:
+            data_iter = tqdm(data_loader, mininterval=args.tqdm_interval, disable=not accelerator.is_main_process)
+        else:
+            data_iter = tqdm(data_loader, mininterval=args.tqdm_interval)
     for data in data_iter:
         try:
             data = data.to(device)
