@@ -177,3 +177,4 @@ results/
 inference_results/
 pdbbind2020/
 prompt_comp_visualization/
+example/*/
