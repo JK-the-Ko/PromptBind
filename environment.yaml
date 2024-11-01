@@ -3,6 +3,7 @@ channels:
   - pyg
   - pytorch
   - nvidia
+  - milagraph
   - conda-forge
   - defaults
 dependencies:
@@ -18,6 +19,9 @@ dependencies:
   - pytorch-scatter
   - rdkit=2024.03.6
   - accelerate
+  - scikit-learn
+  - pymol-open-source
+  - torchdrug
   - conda-forge::tensorboard
   - pip
   - pip:
