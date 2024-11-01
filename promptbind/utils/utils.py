@@ -527,6 +527,10 @@ def evaluate_mean_pocket_cls_coord_multi_task(accelerator, args, data_loader, mo
     centroid_dis_5A_list = []
     pdb_list = []
 
+    com_coord_pred_per_sample_list = []
+    com_coord_offset_per_sample_list = []
+    mol_list = []
+
     skip_count = 0
     count = 0
     batch_loss = 0.0
@@ -624,9 +628,14 @@ def evaluate_mean_pocket_cls_coord_multi_task(accelerator, args, data_loader, mo
                     pocket_coord_pred_list.append(pred_pocket_center_gumbel_mean.unsqueeze(0).detach())
                     pocket_coord_list.append(data.coords_center[i].unsqueeze(0))
 
-            torch.cuda.empty_cache()
+            for i in range(len(data)):
+                i_mask = (compound_batch == i)
+                com_coord_pred_i = com_coord_pred[i_mask]
+                com_coord_pred_per_sample_list.append(com_coord_pred_i.cpu())
+                com_coord_offset_per_sample_list.append(data[i].coord_offset.cpu())
+                mol_list.append(data[i].pdb)
 
-            # real_y_mask_list.append(data.real_y_mask)
+            torch.cuda.empty_cache()
         
         except Exception as e:
             print(e)
@@ -678,7 +687,11 @@ def evaluate_mean_pocket_cls_coord_multi_task(accelerator, args, data_loader, mo
     if len(pocket_coord_pred_list) > 0:
         metrics.update(pocket_metrics(pocket_coord_pred, pocket_coord))
 
-    return metrics, pocket_prompt_feat, complex_prompt_feat
+    return (
+        metrics, pocket_prompt_feat, complex_prompt_feat,
+        com_coord_pred_per_sample_list, com_coord_offset_per_sample_list,
+        pdb_list, mol_list
+    )
 
 @torch.no_grad()
 def evaluate_mean_pocket_cls_coord_pocket_pred(args, data_loader, model, com_coord_criterion, criterion, pocket_cls_criterion, pocket_coord_criterion, relative_k, device, pred_dis=False, info=None, saveFileName=None, use_y_mask=False, skip_y_metrics_evaluation=False, stage=1):

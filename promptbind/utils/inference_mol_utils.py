@@ -1,14 +1,15 @@
+import os
 
-from rdkit import Chem
-
-from rdkit.Chem import AllChem
-import scipy.spatial
-from torch_geometric.utils import dense_to_sparse
-
-from rdkit.Geometry import Point3D
 import numpy as np
+import pandas as pd
+import scipy.spatial
 import torch
+from rdkit import Chem
+from rdkit.Chem import AllChem
+from rdkit.Geometry import Point3D
+from torch_geometric.utils import dense_to_sparse
 from torchdrug import data as td
+
 
 def binarize(x):
     return torch.where(x > 0, torch.ones_like(x), torch.zeros_like(x))
@@ -139,16 +140,28 @@ def generate_conformation(mol):
     return mol
 
 def write_mol(reference_mol, coords, output_file):
-    mol = reference_mol
+    with open('example/example.csv', 'r') as f:
+        content = f.readlines()
+    info = []
+    for line in content[1:]:
+        smiles, pdb, ligand_id = line.strip().split(',')
+        info.append([smiles, pdb, ligand_id])
+    info = pd.DataFrame(info, columns=['smiles', 'pdb', 'ligand_id'])
+
+    smiles = info[info['pdb'] == reference_mol].iloc[0].smiles
+    mol = read_smiles(smiles)
+    mol = generate_conformation(mol)
+
     if mol is None:
         raise Exception()
     conf = mol.GetConformer()
     for i in range(mol.GetNumAtoms()):
         x, y, z = coords[i]
         conf.SetAtomPosition(i, Point3D(float(x), float(y), float(z)))
+    if not os.path.exists(os.path.dirname(output_file)):
+        os.makedirs(os.path.dirname(output_file))
     w = Chem.SDWriter(output_file)
     w.SetKekulize(False)
     w.write(mol)
     w.close()
     return mol
-    
