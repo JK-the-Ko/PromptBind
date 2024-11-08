@@ -1,6 +1,6 @@
 #!/bin/bash
 ######################################################
-data_path=/home/kevinb/nas/protein/data/pdbbind2020
+data_path=pdbbind2020
 cuda_device=1
 ######################################################
 
@@ -12,5 +12,5 @@ sed -i "s|data_path: .*|data_path: \"$data_path\"|" $base_config
 for prompt_nf in "${prompt_nfs[@]}"
 do
   sed -i "s/prompt_nf: [0-9]*/prompt_nf: $prompt_nf/" $base_config
-  CUDA_VISIBLE_DEVICES=$cuda_device python promptbind/test_promptbind_test.py
+  CUDA_VISIBLE_DEVICES=$cuda_device python promptbind/test_promptbind.py
 done
