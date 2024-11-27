@@ -2,8 +2,8 @@ from torch_geometric.data import Dataset
 import pandas as pd
 from tqdm import tqdm
 import os
-from utils.inference_pdb_utils import extract_protein_structure, extract_esm_feature
-from utils.inference_mol_utils import read_smiles, extract_torchdrug_feature_from_mol, generate_conformation
+from inference_pdb_utils import extract_protein_structure, extract_esm_feature
+from inference_mol_utils import read_smiles, extract_torchdrug_feature_from_mol, generate_conformation
 from torch_geometric.data import HeteroData
 import torch
 

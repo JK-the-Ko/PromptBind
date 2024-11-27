@@ -14,8 +14,8 @@ import torch.nn.functional as F
 from torch_scatter import scatter_softmax, scatter_add, scatter_sum
 from torch_geometric.utils import to_dense_batch
 
-from models.cross_att import CrossAttentionModule
-from models.model_utils import InteractionModule
+from cross_att import CrossAttentionModule
+from model_utils import InteractionModule
 
 
 class MC_E_GCL(nn.Module):
