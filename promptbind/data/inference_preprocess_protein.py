@@ -2,7 +2,7 @@ import torch
 from tqdm import tqdm
 import os
 import argparse
-from utils.inference_pdb_utils import extract_protein_structure, extract_esm_feature
+from promptbind.utils.inference_pdb_utils import extract_protein_structure, extract_esm_feature
 
 
 parser = argparse.ArgumentParser(description='Preprocess protein.')

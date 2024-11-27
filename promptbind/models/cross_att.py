@@ -2,7 +2,7 @@ import torch
 from torch import nn
 from torch.nn import LayerNorm, Linear
 
-from models.model_utils import permute_final_dims, Attention, Transition, InteractionModule
+from model_utils import permute_final_dims, Attention, Transition, InteractionModule
 
 class CrossAttentionModule(nn.Module):
     def __init__(self, node_hidden_dim, pair_hidden_dim, rm_layernorm=False, keep_trig_attn=False, dist_hidden_dim=32, normalize_coord=None):
