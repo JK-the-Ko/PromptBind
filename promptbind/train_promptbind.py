@@ -5,18 +5,18 @@ from tqdm.auto import tqdm
 
 import torch
 
-from data import get_data
+from promptbind.data.data import get_data
 from torch_geometric.loader import DataLoader
-from utils.metrics import *
-from utils.utils import *
+from promptbind.utils.metrics import *
+from promptbind.utils.utils import *
 from datetime import datetime
-from utils.logging_utils import Logger
+from promptbind.utils.logging_utils import Logger
 import sys
 import argparse
 from torch.utils.data import RandomSampler
 import random
 from torch_scatter import scatter_mean
-from utils.metrics_to_tsb import metrics_runtime_no_prefix
+from promptbind.utils.metrics_to_tsb import metrics_runtime_no_prefix
 from torch.utils.tensorboard import SummaryWriter
 # from torch.nn.utils import clip_grad_norm_
 from accelerate import Accelerator
