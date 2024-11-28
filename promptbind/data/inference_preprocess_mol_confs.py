@@ -1,7 +1,7 @@
 import torch
 import argparse
 import os
-from utils.inference_mol_utils import read_smiles, extract_torchdrug_feature_from_mol, generate_conformation
+from promptbind.utils.inference_mol_utils import read_smiles, extract_torchdrug_feature_from_mol, generate_conformation
 import pandas as pd
 from multiprocessing import Pool
 

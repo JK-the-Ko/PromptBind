@@ -3,9 +3,9 @@ from torch_geometric.utils import to_dense_batch, to_dense_adj
 from torch import nn
 from torch.nn import Linear
 import torch.nn as nn
-from models.att_model import EfficientMCAttModel
+from .att_model import EfficientMCAttModel
 import torch.nn.functional as F
-from utils.utils import get_keepNode_tensor, gumbel_softmax_no_random
+from promptbind.utils.utils import get_keepNode_tensor, gumbel_softmax_no_random
 import random
 
 

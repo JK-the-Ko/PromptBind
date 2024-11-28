@@ -7,8 +7,8 @@ import random
 from torch_scatter import scatter_sum
 
 from torch_geometric.utils import to_dense_batch
-from models.egnn import MCAttEGNN
-from models.model_utils import InteractionModule, RBFDistanceModule
+from .egnn import MCAttEGNN
+from .model_utils import InteractionModule, RBFDistanceModule
 
 
 def sequential_and(*tensors):

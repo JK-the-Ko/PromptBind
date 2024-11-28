@@ -7,13 +7,13 @@ import torch
 import yaml
 from accelerate import Accelerator, DistributedDataParallelKwargs
 from accelerate.utils import set_seed
-from data.data import get_data
-from models.model import *
+from promptbind.data.data import get_data
+from promptbind.models.model import *
 from safetensors.torch import load_model
 from torch_geometric.loader import DataLoader
-from utils.logging_utils import Logger
-from utils.metrics import *
-from utils.utils import *
+from promptbind.utils.logging_utils import Logger
+from promptbind.utils.metrics import *
+from promptbind.utils.utils import *
 
 
 class PromptBindInference:

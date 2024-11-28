@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import torch
 from torch_geometric.data import Dataset
-from utils.utils import construct_data_from_graph_gvp_mean
+from promptbind.utils.utils import construct_data_from_graph_gvp_mean
 import lmdb
 import pickle
 
