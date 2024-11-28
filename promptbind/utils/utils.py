@@ -1,6 +1,5 @@
-
 import torch
-from utils.metrics import *
+from metrics import *
 import numpy as np
 import pandas as pd
 import scipy.spatial
@@ -10,7 +9,7 @@ from torch_scatter import scatter_mean
 
 from rdkit import Chem
 from rdkit.Chem import rdMolTransforms
-from utils.post_optim_utils import post_optimize_compound_coords, post_optimize_compound_coords_lbfgs
+from post_optim_utils import post_optimize_compound_coords, post_optimize_compound_coords_lbfgs
 
 
 # from feature_utils import read_mol
