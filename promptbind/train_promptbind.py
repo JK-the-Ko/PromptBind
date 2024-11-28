@@ -260,7 +260,7 @@ test_loader = DataLoader(test, batch_size=args.batch_size, follow_batch=['x', 'c
 # all_pocket_test_loader = DataLoader(all_pocket_test, batch_size=2, follow_batch=['x', 'compound_pair'], shuffle=False, pin_memory=False, num_workers=4)
 
 # import model is put here due to an error related to torch.utils.data.ConcatDataset after importing torchdrug.
-from models.model import *
+from promptbind.models.model import *
 device = 'cuda'
 
 model = get_model(args, logger, device)
