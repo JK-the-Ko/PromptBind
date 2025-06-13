@@ -226,7 +226,7 @@ logger = Logger(accelerator=accelerator, log_path=f'{pre}/{timestamp}.log')
 logger.log_message(f"{' '.join(sys.argv)}")
 
 # torch.set_num_threads(1)
-# # ----------without this, I could get 'RuntimeError: received 0 items of ancdata'-----------
+# # ----------without this, could get 'RuntimeError: received 0 items of ancdata'-----------
 torch.multiprocessing.set_sharing_strategy('file_system')
 
 # train, valid, test: only native pocket. train_after_warm_up, all_pocket_test include all other pockets(protein center and P2rank result)
